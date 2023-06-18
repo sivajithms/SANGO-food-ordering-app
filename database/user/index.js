@@ -6,6 +6,6 @@ const UserSchema = new mongoose.Schema({
     password: { type: String },
     address: [{ detail: { type: String }, for: { type: String } }],
     phoneNumber:{type:String}
-});
+},{timestamps:true});
 
-export const UserModel = mongoose.model("users", UserSchema);
+export const UserModel = mongoose.model("Users", UserSchema);
