@@ -14,7 +14,7 @@ Access          public
 Method          POST
 */
 
-Router.get('/signup', async (req, res) => {
+Router.post('/signup', async (req, res) => {
     try {
         const { email, password, fullname, phoneNumber } = req.body.credentials;
 
@@ -44,4 +44,7 @@ Router.get('/signup', async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
-})
+});
+
+
+export default Router;

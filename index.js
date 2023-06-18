@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors());
 app.use(helmet());
 
+//for application routes
+app.use('/auth',Auth);
+
 app.get('/', (req, res) => {
     res.json('hii');
 })
