@@ -20,11 +20,11 @@ UserSchema.statics.findEmailAndPhone = async ({ email, phoneNumber }) => {
         throw new Error("user already exists");
     }
     return false;
-}
+};
 
 UserSchema.methods.generateJwtToken = function () {
     return jwt.sign({ user: this._id.toString() }, "SangoApp")
-}
+};
 
 UserSchema.pre('save', function (next) {
     const user = this;
@@ -44,7 +44,23 @@ UserSchema.pre('save', function (next) {
             user.password = hash;
             return next();
         })
-    })
-})
+    });
+});
+
+UserSchema.statics.findByEmailAndPassword = async ({ email, password }) => {
+
+    //check whether email or phone number exists
+    const user = await UserModel.findOne({ email });
+
+    if (!user) throw new Error("User does not exist");
+
+    //compare password
+    const doesPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!doesPasswordMatch) {
+        throw new Error("Invalid Password");
+    }
+    return user;
+};
 
 export const UserModel = mongoose.model("Users", UserSchema);
