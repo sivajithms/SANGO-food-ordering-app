@@ -13,7 +13,8 @@ import googleAuthConfig from './configs/google.config';
 import Auth from './API/Auth';
 import Restaurant from './API/Restaurants';
 import Food from './API/Food';
-import Menu from './API/Menu'
+import Menu from './API/Menu';
+import Image from './API/Image';
 
 //database connection
 import connectDB from './database/connection'
@@ -37,6 +38,7 @@ app.use('/auth', Auth);
 app.use('/restaurant', Restaurant);
 app.use('/food', Food);
 app.use('/menu', Menu);
+app.use('/image', Image); 
 
 app.get('/', (req, res) => {
     res.json('hii');
