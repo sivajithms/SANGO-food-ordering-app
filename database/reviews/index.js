@@ -6,12 +6,14 @@ const ReviewSchema = new mongoose.Schema({
     user: { type: mongoose.Types.ObjectId, ref: "Users" },
     rating: { type: Number, required: true },
     reviewText: { type: String, required: true },
+    isRestaurantReview: Boolean,
+    isFoodReview: Boolean,
     photos: [
         {
-            type:mongoose.Types.ObjectId,
-            ref:"Images"
+            type: mongoose.Types.ObjectId,
+            ref: "Images"
         }
     ]
-},{timestamps:true})
+}, { timestamps: true })
 
-export const ReviewModel = mongoose.model("Reviews",ReviewSchema)
+export const ReviewModel = mongoose.model("Reviews", ReviewSchema)

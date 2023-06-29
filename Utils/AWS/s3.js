@@ -1,7 +1,7 @@
 require("dotenv").config();
+// require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 import AWS from 'aws-sdk';
-// require('aws-sdk/lib/maintenance_mode_message').suppress = true;
 
 //AWS S3 bucket config
 const s3Bucket = new AWS.S3({
