@@ -2,6 +2,9 @@ import express from 'express';
 
 import { UserModel } from '../../database/allModels';
 import passport from 'passport';
+import { ValidateSignin, ValidateSignup } from '../../validation/auth';
+
+//validation
 
 const Router = express.Router();
 
@@ -15,10 +18,12 @@ Method          POST
 
 Router.post('/signup', async (req, res) => {
     try {
+        await ValidateSignup(req.body.credentials);
+
         await UserModel.findEmailAndPhone(req.body.credentials);
 
         //DB
-        const newUser = await UserModel.create(req.body.credentials)
+        const newUser = await UserModel.create(req.body.credentials);
 
         //JWT token
         const token = newUser.generateJwtToken();
@@ -40,6 +45,8 @@ Method          POST
 
 Router.post('/signin', async (req, res) => {
     try {
+        await ValidateSignin(req.body.credentials);
+
         const user = await UserModel.findByEmailAndPassword(req.body.credentials)
 
         //JWT token

@@ -8,6 +8,7 @@ import session from 'express-session';
 
 //config 
 import googleAuthConfig from './configs/google.config';
+import routeConfig from './configs/route.config';
 
 //API
 import Auth from './API/Auth';
@@ -35,6 +36,7 @@ app.use(passport.session());
 
 //passport configuration
 googleAuthConfig(passport);
+routeConfig(passport);
 
 //for application routes
 app.use('/auth', Auth);
